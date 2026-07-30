@@ -1,0 +1,9 @@
+# RATIONALE
+
+This project uses a single REST resource, `recipes`, because it is simple enough for a small assignment while still demonstrating complete CRUD behavior and practical filtering. The URL structure follows resource-based REST conventions: `/api/recipes` for collection operations and `/api/recipes/:id` for item-specific operations. HTTP methods were selected by intent: `GET` for retrieval, `POST` for creation, `PUT` for full updates, and `DELETE` for removal. Status codes are used to communicate outcomes clearly: `200` for successful reads/updates, `201` for creation, `204` for successful deletion with no body, `400` for invalid input, `404` for missing resources, and `500` for unexpected server errors.
+
+I organized the API into separate modules to keep concerns clear and maintainable. Route handlers live in `src/routes/recipes.js`, custom middleware is in `src/middleware`, and data access is in `src/data/recipesStore.js`. This separation makes each file focused and easier to test or revise independently. The data layer is asynchronous and uses Node.js `fs/promises` and `path` utilities to read/write a JSON file, which satisfies assignment constraints without adding database complexity.
+
+Error handling is centralized through a final Express error middleware. Route handlers use `try/catch` and `next(error)` so both expected and unexpected failures are handled consistently. Edge cases include invalid payloads (handled by validation middleware with `400`) and non-existent recipe IDs (handled as `404`).
+
+AI tools were most useful for quickly drafting repetitive boilerplate (route scaffolding and validation patterns). They were less reliable for exact status code semantics and occasionally over-constrained validation. I treated AI output as a draft, then validated behavior with manual API calls and revised code to match REST and rubric requirements.
