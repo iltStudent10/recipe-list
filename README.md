@@ -35,6 +35,7 @@ Server default URL: `http://localhost:3000`
 - `GET /api/recipes` - list all recipes
 - `GET /api/recipes?title=pasta` - filter by title
 - `GET /api/recipes?tag=quick` - filter by tag
+- `GET /api/recipes/search/:name` - wildcard name filter (e.g., `*pasta*`)
 - `GET /api/recipes/:id` - get one recipe
 - `POST /api/recipes` - create recipe
 - `PUT /api/recipes/:id` - update recipe
@@ -52,6 +53,11 @@ Server default URL: `http://localhost:3000`
 ### Get all recipes
 ```bash
 curl http://localhost:3000/api/recipes
+```
+
+### Wildcard name filter
+```bash
+curl "http://localhost:3000/api/recipes/search/*pasta*"
 ```
 
 ### Create a recipe

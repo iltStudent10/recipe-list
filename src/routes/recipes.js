@@ -11,6 +11,12 @@ const {
 
 const router = express.Router();
 
+function wildcardToRegex(pattern) {
+  const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, "\\$&");
+  const regexPattern = `^${escaped.replace(/\*/g, ".*")}$`;
+  return new RegExp(regexPattern, "i");
+}
+
 router.get("/", async (req, res, next) => {
   try {
     const recipes = await getAllRecipes({
@@ -19,6 +25,20 @@ router.get("/", async (req, res, next) => {
     });
 
     res.status(200).json(recipes);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/search/:name", async (req, res, next) => {
+  try {
+    const allRecipes = await getAllRecipes();
+    const { name } = req.params;
+    const pattern = name.includes("*") ? name : `*${name}*`;
+    const matcher = wildcardToRegex(pattern);
+
+    const matchingRecipes = allRecipes.filter((recipe) => matcher.test(recipe.title));
+    res.status(200).json(matchingRecipes);
   } catch (error) {
     next(error);
   }
