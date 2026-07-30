@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "title": "Tomato Pasta",
+    "ingredients": [
+      "pasta",
+      "tomato",
+      "garlic",
+      "olive oil"
+    ],
+    "instructions": "Boil pasta, sauté garlic, add tomato, and combine.",
+    "tags": [
+      "dinner",
+      "vegetarian"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Banana Smoothie",
+    "ingredients": [
+      "banana",
+      "milk",
+      "honey"
+    ],
+    "instructions": "Blend all ingredients until smooth.",
+    "tags": [
+      "breakfast",
+      "quick"
+    ]
+  }
+]
