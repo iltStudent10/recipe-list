@@ -88,12 +88,3 @@ curl -X PUT http://localhost:3000/api/recipes/1 \
 ```bash
 curl -X DELETE http://localhost:3000/api/recipes/2
 ```
-
-## Assignment Deliverables Included
-- Full CRUD Express REST API
-- Custom middleware (`requestLogger`, `validateRecipe`)
-- Route organization with Express Router
-- Centralized error handling middleware
-- Query parameter filtering
-- AI usage documentation: see `AI-USAGE.md`
-- Design rationale: see `RATIONALE.md`
